@@ -8,7 +8,8 @@ export default new Router({
   routes: [
     {
       path: '/',
-      redirect: 'Library'
+      name: 'Homepage',
+      redirect: '/player'
     },
     {
       path: '/player',

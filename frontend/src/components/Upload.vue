@@ -19,8 +19,10 @@
                     </div>
                   </v-flex>
 
-
-                  <!--<v-btn block @click="" color="primary"> Start&nbsp;<v-icon>search</v-icon></v-btn>-->
+                  <vue-dropzone ref="myVueDropzone"
+                                id="dropzone"
+                                :options="dropzoneOptions"
+                                class="upload__dropzone"></vue-dropzone>
 
                 </v-layout>
               </v-form>
@@ -38,8 +40,14 @@
 import Api, { handleError } from '../libraries/api'
 const api = new Api()
 
+import vue2Dropzone from 'vue2-dropzone'
+import 'vue2-dropzone/dist/vue2Dropzone.min.css'
+
 export default {
   name: 'upload',
+  components: {
+    vueDropzone: vue2Dropzone
+  },
   data() {
     return {
       title: 'Upload',
@@ -47,6 +55,12 @@ export default {
       alert: null,
       rules: {
         required: (value) => !!value || 'Required.'
+      },
+      dropzoneOptions: {
+        url: 'https://httpbin.org/post',
+        thumbnailWidth: 150,
+        maxFilesize: 40,
+        headers: { "My-Awesome-Header": "header value" }
       }
     }
   },
@@ -74,6 +88,8 @@ export default {
 
 
 <style lang="stylus">
-  .library
+  .upload
     background white
+    &__dropzone
+      width 100%
 </style>

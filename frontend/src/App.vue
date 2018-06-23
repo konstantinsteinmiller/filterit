@@ -13,7 +13,7 @@
               <v-icon>dashboard</v-icon>
             </v-list-tile-action>
             <v-list-tile-content>
-              <v-list-tile-title><router-link class="app__navigation-link" :to="{ name: 'Homepage' }">Homepage</router-link></v-list-tile-title>
+              <v-list-tile-title><router-link class="app__navigation-link" :to="{ path: '/'/*, name: 'Homepage' */}">Homepage</router-link></v-list-tile-title>
             </v-list-tile-content>
           </v-list-tile>
           <v-list-tile @click="">
@@ -40,7 +40,8 @@
             ></v-text-field>
           </span>
         </v-toolbar-items>
-        <v-icon style="margin-left: -1em">search</v-icon>
+        <v-icon style="margin-left: -1em"
+                @click="searchForVideos">search</v-icon>
 
 
 
@@ -75,6 +76,10 @@
 </template>
 
 <script>
+  import VueYouTubeEmbed from 'vue-youtube-embed'
+  import Vue from 'vue'
+  Vue.use(VueYouTubeEmbed)
+
   export default {
     name: 'App',
     data(){
@@ -88,6 +93,11 @@
     },
     mounted(){
       document.title = this.appName;
+    },
+    methods: {
+      searchForVideos(){
+        console.log("searchForVideos")
+      }
     }
   }
 </script>
