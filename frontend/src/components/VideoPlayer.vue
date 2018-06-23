@@ -23,7 +23,7 @@
 
 
     <div class="video-list">
-      <div @click="chooseVideo(video, true)" :key="video.id" v-for="video in videos" class="thumbnail">
+      <div @click="chooseVideo(video, true)" :key="video.id" v-for="video in vids" class="thumbnail">
         <div class="thumbnail-img">
           <img :src="video.thumbnail" />
         </div>
@@ -43,69 +43,6 @@
 import Vue from 'vue';
 
 
-let videos = [
-  {
-    id: 'bfTOOpGr7Vw',
-    title: "Teletabbies - Alle hatten ihre Lieblingssachen dabei",
-    thumbnail:
-      "https://img.youtube.com/vi/bfTOOpGr7Vw/default.jpg",
-    youtubeURL: "https://www.youtube.com/embed/bfTOOpGr7Vw",
-    creator: "Teletabbies",
-    likes: 0,
-    views: 0
-  },{
-    id: '7G8QItjTSDA',
-    title: "Five Finger Death Punch - I Apologize",
-    thumbnail:
-      "https://i.ytimg.com/vi/OzvasAJIHb4/hqdefault.jpg?sqp=-oaymwEZCNACELwBSFXyq4qpAwsIARUAAIhCGAFwAQ==&amp;rs=AOn4CLB0MdnNeKeo8Cb6YnAeh7SIGxPdXA",
-    youtubeURL: "https://www.youtube.com/embed/jn9mHzXJIV0",
-    creator: "Five Finger Death Punch",
-    likes: 0,
-    views: 0
-  },{
-    id: 'ZbZSe6N_BXs',
-    title: "Pharrell Williams - Happy",
-    thumbnail:
-      "https://i.ytimg.com/vi/JRMOMjCoR58/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&amp;rs=AOn4CLDYO17BuSTD_XxF_-u_T2fp2qVYRQ",
-    youtubeURL: "https://www.youtube.com/embed/ZbZSe6N_BXs",
-    creator: "Pharrell Williams",
-    likes: 0,
-    views: 0
-  },
-  {
-    id: '7G8QItjTSDA',
-    title: "Five Finger Death Punch - Remember Everything",
-    thumbnail:
-      "https://i.ytimg.com/vi/7G8QItjTSDA/hqdefault.jpg?sqp=-oaymwEZCNACELwBSFXyq4qpAwsIARUAAIhCGAFwAQ==&amp;rs=AOn4CLD1Qmmzq5lZfcU02UKgs2deWnS4Hg",
-    youtubeURL: "https://www.youtube.com/embed/7G8QItjTSDA",
-    creator: "Five Finger Death Punch",
-    likes: 0,
-    views: 0
-  },
-  {
-    id: 'o_l4Ab5FRwM',
-    title: "Five Finger Death Punch - Wrong Side Of Heaven",
-    thumbnail:
-      "https://i.ytimg.com/vi/o_l4Ab5FRwM/hqdefault.jpg?sqp=-oaymwEZCNACELwBSFXyq4qpAwsIARUAAIhCGAFwAQ==&amp;rs=AOn4CLBixedk5FaRixvMcRuY1JGkbhIM2A",
-    youtubeURL: "https://www.youtube.com/embed/o_l4Ab5FRwM",
-    creator: "Five Finger Death Punch",
-    likes: 0,
-    views: 0
-  },
-  {
-    id: '_DboMAghWcA',
-    title: "Rise Against - Hero Of War",
-    thumbnail:
-      "https://i.ytimg.com/vi/_DboMAghWcA/hqdefault.jpg?sqp=-oaymwEZCNACELwBSFXyq4qpAwsIARUAAIhCGAFwAQ==&amp;rs=AOn4CLCyNsjbwvVsIs8E5mTyRdIbC4Vccw",
-    youtubeURL: "https://www.youtube.com/embed/_DboMAghWcA",
-    creator: "Rise Against",
-    likes: 0,
-    views: 0
-  }
-];
-
-// let selectedVideos = [];
-
 let uploadableVideos = [
   {
     id: 'u8G10UCVonM',
@@ -116,27 +53,112 @@ let uploadableVideos = [
     creator: "Lustige kurze Videos",
     likes: 0,
     views: 0
+  },
+  {
+    id: 'Fp-t3gic6qw',
+    title: "Super süßes Katzen-Video",
+    thumbnail:
+      "https://i.ytimg.com/vi/Fp-t3gic6qw/hqdefault.jpg?sqp=-oaymwEZCNACELwBSFXyq4qpAwsIARUAAIhCGAFwAQ==&amp;rs=AOn4CLDikvh6K1otRdAV1Zgx9s2KXjvAGg",
+    youtubeURL: "https://www.youtube.com/embed/Fp-t3gic6qw",
+    creator: "Super süßes Katzen-Video",
+    likes: 0,
+    views: 0
   }
 ];
 
 export default {
   name: 'VideoPlayer',
   props: {
-    activeVideo: {
-      type: Object,
-      default: videos[1]
-    },
+
   },
   data () {
     return {
-      videos,
-      remount: true
+      vids: [
+        {
+          id: 'bfTOOpGr7Vw',
+          title: "Teletabbies - Alle hatten ihre Lieblingssachen dabei",
+          thumbnail:
+            "https://img.youtube.com/vi/bfTOOpGr7Vw/default.jpg",
+          youtubeURL: "https://www.youtube.com/embed/bfTOOpGr7Vw",
+          creator: "Teletabbies",
+          likes: 0,
+          views: 0
+        },{
+          id: 'ZbZSe6N_BXs',
+          title: "Pharrell Williams - Happy",
+          thumbnail:
+            "https://i.ytimg.com/vi/JRMOMjCoR58/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&amp;rs=AOn4CLDYO17BuSTD_XxF_-u_T2fp2qVYRQ",
+          youtubeURL: "https://www.youtube.com/embed/ZbZSe6N_BXs",
+          creator: "Pharrell Williams",
+          likes: 0,
+          views: 0
+        },
+        {
+          id: '7G8QItjTSDA',
+          title: "Five Finger Death Punch - Remember Everything",
+          thumbnail:
+            "https://i.ytimg.com/vi/7G8QItjTSDA/hqdefault.jpg?sqp=-oaymwEZCNACELwBSFXyq4qpAwsIARUAAIhCGAFwAQ==&amp;rs=AOn4CLD1Qmmzq5lZfcU02UKgs2deWnS4Hg",
+          youtubeURL: "https://www.youtube.com/embed/7G8QItjTSDA",
+          creator: "Five Finger Death Punch",
+          likes: 0,
+          views: 0
+        },
+        {
+          id: 'o_l4Ab5FRwM',
+          title: "Five Finger Death Punch - Wrong Side Of Heaven",
+          thumbnail:
+            "https://i.ytimg.com/vi/o_l4Ab5FRwM/hqdefault.jpg?sqp=-oaymwEZCNACELwBSFXyq4qpAwsIARUAAIhCGAFwAQ==&amp;rs=AOn4CLBixedk5FaRixvMcRuY1JGkbhIM2A",
+          youtubeURL: "https://www.youtube.com/embed/o_l4Ab5FRwM",
+          creator: "Five Finger Death Punch",
+          likes: 0,
+          views: 0
+        },
+        {
+          id: '_DboMAghWcA',
+          title: "Rise Against - Hero Of War",
+          thumbnail:
+            "https://i.ytimg.com/vi/_DboMAghWcA/hqdefault.jpg?sqp=-oaymwEZCNACELwBSFXyq4qpAwsIARUAAIhCGAFwAQ==&amp;rs=AOn4CLCyNsjbwvVsIs8E5mTyRdIbC4Vccw",
+          youtubeURL: "https://www.youtube.com/embed/_DboMAghWcA",
+          creator: "Rise Against",
+          likes: 0,
+          views: 0
+        }
+      ],
+      remount: true,
+      activeVideo: {
+        id: 'ZbZSe6N_BXs',
+        title: "Pharrell Williams - Happy",
+        thumbnail:
+          "https://i.ytimg.com/vi/JRMOMjCoR58/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&amp;rs=AOn4CLDYO17BuSTD_XxF_-u_T2fp2qVYRQ",
+        youtubeURL: "https://www.youtube.com/embed/ZbZSe6N_BXs",
+        creator: "Pharrell Williams",
+        likes: 0,
+        views: 0
+      }
+    }
+  },
+  mounted(){
+    // this.activeVideo = this.videos[1];
+    // console.log('this.videoId', this.videoId, this.videoId && this.videoId !== '')
+    let allVids = [this.vids.concat(uploadableVideos)].pop();
+    if (this.videoId && this.videoId !== '') {
+      console.log('(videos', this.vids, allVids)
+
+      this.activeVideo = allVids
+        .filter((vid) => {console.log('vid ', vid.id); return vid.id === this.videoId}).pop();
+    }
+  },
+  computed: {
+    videoId(){
+      return this.$route && this.$route.query && this.$route.query.v
+        ? this.$route.query.v : undefined
     }
   },
   methods:{
     chooseVideo(video, admitted){
       //SET VIDEO AS ACTIVE VIDEO
       this.activeVideo = video;
+      this.$router.push({ query: {v: video.id}})
       this.remount = false;
       //INCREASE THE VIDEOS VIEWS BY 1
       video.views += 1;
@@ -145,11 +167,11 @@ export default {
       })
 
 
-      if (admitted && videos.every( vid => {
+      if (admitted && this.vids.every( vid => {
           return vid.id !== uploadableVideos.id
         }))
       {
-        Vue.set(videos, videos.length, uploadableVideos[0]);
+        // Vue.set(this.vids, this.vids.length, uploadableVideos[0]);
       }
     },
     addLike(){

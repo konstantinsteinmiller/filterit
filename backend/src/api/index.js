@@ -2,6 +2,15 @@ import { version } from '../../package.json';
 import { Router } from 'express';
 import facets from './facets';
 
+var http = require('http'),
+    inspect = require('util').inspect,
+    path = require('path'),
+    os = require('os'),
+    fs = require('fs');
+
+
+var Busboy = require('busboy');
+
 
 export default ({ config, db }) => {
     let api = Router();
@@ -11,7 +20,52 @@ export default ({ config, db }) => {
 
     // perhaps expose some API metadata at the root
     api.get('/', (req, res) => {
-        res.status(200).json({ version, text: 'some' });
+        res.status(200).json({ version, text: 'some ' + JSON.stringify(req) });
+    });
+
+    api.post('/checkFile', (req, res) => {
+        if (req.method === 'POST') {
+            // var busboy = new Busboy({ headers: req.headers });
+            // busboy.on('file', function(fieldname, file, filename, encoding, mimetype) {
+            //   console.log('File [' + fieldname + ']: filename: ' + filename + ', encoding: ' + encoding + ', mimetype: ' + mimetype);
+            //   file.on('data', function(data) {
+            //     console.log('File [' + fieldname + '] got ' + data.length + ' bytes');
+            //   });
+            //   file.on('end', function() {
+            //     console.log('File [' + fieldname + '] Finished', file);
+            //   });
+            // });
+            // busboy.on('field', function(fieldname, val, fieldnameTruncated, valTruncated, encoding, mimetype) {
+            //   console.log('Field [' + fieldname + ']: value: ' + inspect(val));
+            // });
+            // busboy.on('finish', function() {
+            //   console.log('Done parsing form!');
+            //   res.status(200).json({ 'Connection': 'close' });
+            // });
+            // req.pipe(busboy);
+
+
+          /* save file to Disk */
+          let busboy = new Busboy({ headers: req.headers });
+          busboy.on('file', function(fieldname, file, filename, encoding, mimetype) {
+            let saveTo = path.join(__dirname, '../' + filename);
+            // console.log('file, filename', saveTo, filename)
+            file.pipe(fs.createWriteStream(saveTo));
+
+            if (~filename.indexOf('Michael Jackson')){
+              res.status(403).json({ 'Connection': 'close' });
+            }else {
+              res.status(200).json({ 'Connection': 'close' });
+            }
+          });
+          busboy.on('finish', function() {
+            /* send file to Azure service */
+
+          });
+          return req.pipe(busboy);
+        }
+
+
     });
 
     // get a tracking object with states etc. by tracking number

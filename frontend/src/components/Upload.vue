@@ -22,7 +22,10 @@
                   <vue-dropzone ref="myVueDropzone"
                                 id="dropzone"
                                 :options="dropzoneOptions"
-                                class="upload__dropzone"></vue-dropzone>
+                                class="upload__dropzone"
+                                @vdropzone-file-added="addedFile"
+                                @vdropzone-success="checkSuccessful"
+                                @vdropzone-error="checkError"></vue-dropzone>
 
                 </v-layout>
               </v-form>
@@ -57,7 +60,7 @@ export default {
         required: (value) => !!value || 'Required.'
       },
       dropzoneOptions: {
-        url: 'https://httpbin.org/post',
+        url: 'http://localhost:5050/api/checkFile',
         thumbnailWidth: 150,
         maxFilesize: 40,
         headers: { "My-Awesome-Header": "header value" }
@@ -74,13 +77,25 @@ export default {
   },
   methods: {
     onInit(){
-      /* fetch some data maybe */
-
       // api.get()
       //   .then((response) => {
       //     /* do something with response */
       //   })
       //   .catch(handleError)
+    },
+    addedFile(file){
+
+    },
+    checkSuccessful(file, response){
+      console.log("checkSuccessful ", response)
+      this.alert = { type: 'success', text: 'successfully added file.' }
+      setTimeout(() => {
+        this.$router.push({path: '/player', query: { v: 'oRdxUFDoQe0'} })
+      }, 1000)
+    },
+    checkError(file, message, xhr){
+      console.log("checkError ", message)
+      this.alert = { type: 'error', text: 'The file cant be uploaded due to copyright infringement.' }
     }
   }
 }

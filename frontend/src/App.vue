@@ -30,7 +30,7 @@
       <v-toolbar app fixed clipped-left>
         <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
 
-        <v-toolbar-items class="hidden-sm-and-down">
+        <v-toolbar-items class="hidden-sm-and-down page__search">
           <span  class="hidden-xs-only">
             <v-text-field
               class="page__toolbar-search-input"
@@ -143,6 +143,10 @@
         &-search-input
           padding-right 2em
           margin-right 2em
+      &__search
+        > *
+          margin-left 16em
+          width 30em
 
 
 </style>
