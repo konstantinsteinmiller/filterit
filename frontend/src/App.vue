@@ -47,9 +47,9 @@
 
         <v-spacer></v-spacer>
         <v-toolbar-items class="hidden-sm-and-down">
-          <!--<div class="page__logo">-->
-            <!--<img src="/static/logo.png" class="page__logo-image">-->
-          <!--</div>-->
+          <div class="page__logo">
+            <img src="/static/Logo_FilterIt.png" class="page__logo-image">
+          </div>
           <v-icon class="page__toolbar-upload-button"
                   @click="$router.push({name: 'Upload'})">fas fa-upload</v-icon>
           <v-icon class="page__toolbar-user">fas fa-user</v-icon>
