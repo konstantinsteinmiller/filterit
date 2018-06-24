@@ -10,7 +10,7 @@
           </v-alert>
 
           <v-list two-line>
-            <v-container grid-list-xl >
+            <v-container grid-list-xl class="upload__container" >
               <v-form ref="form" lazy-validation>
                 <v-layout row wrap>
                   <v-flex xs12>
@@ -64,13 +64,16 @@ export default {
         thumbnailWidth: 150,
         maxFilesize: 40,
         headers: { "My-Awesome-Header": "header value" }
+        // url: 'https://westus.api.cognitive.microsoft.com/spid/v1.0/identify?identificationProfileIds=55b8e588-594a-4d97-a4ec-41a3523b442e&shortAudio=false',
+        // thumbnailWidth: 150,
+        // maxFilesize: 40,
+        // headers: { /*"Content-Type": "application/octet-stream",*/
+        //           "Response-Type": "application/json",
+        //            "Ocp-Apim-Subscription-Key": "fc82178ba3e44c24b042843fc52f9ad9"
+        // }
       }
     }
   },
-  computed: {
-
-  },
-  created() {},
   mounted() {
     document.title = 'Upload Files'
     this.onInit();
@@ -87,10 +90,10 @@ export default {
 
     },
     checkSuccessful(file, response){
-      console.log("checkSuccessful ", response)
+      console.log("checkSuccessful ", /*file, */response)
       this.alert = { type: 'success', text: 'successfully added file.' }
       setTimeout(() => {
-        this.$router.push({path: '/player', query: { v: 'oRdxUFDoQe0'} })
+        this.$router.push({path: '/player', query: { v: response.vidId } })
       }, 1000)
     },
     checkError(file, message, xhr){
@@ -106,5 +109,11 @@ export default {
   .upload
     background white
     &__dropzone
+      width 100%
+      height 100%
+      min-height 530px
+    &__container
+      min-height 600px
+      height 100%
       width 100%
 </style>

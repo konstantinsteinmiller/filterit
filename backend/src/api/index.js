@@ -61,6 +61,16 @@ let videos = [
     likes: 0,
     views: 0
   },
+  {
+    id: 'EFZMQ_GjYII',
+    title: "10 Sekunden Musik",
+    thumbnail:
+      "https://i.ytimg.com/vi/EFZMQ_GjYII/hqdefault.jpg?sqp=-oaymwEZCNACELwBSFXyq4qpAwsIARUAAIhCGAFwAQ==&amp;rs=AOn4CLCyn3Sug_yWJCbhvKk_ZsFWMwhpDw",
+    youtubeURL: "https://www.youtube.com/embed/EFZMQ_GjYII",
+    creator: "10 Sekunden Musik",
+    likes: 0,
+    views: 0
+  },
   // {
   //   id: 'u8G10UCVonM',
   //   title: "Lustige kurze Videos",
@@ -128,18 +138,22 @@ export default ({ config, db }) => {
             if (~filename.indexOf('Michael Jackson')){
               res.status(403).json({ 'Connection': 'close', message: 'The file can\'t be uploaded due to copyright infringement.' });
             }else {
-              videos.push({
-                id: 'Fp-t3gic6qw',
-                title: "Super süßes Katzen-Video",
-                thumbnail:
-                  "https://i.ytimg.com/vi/Fp-t3gic6qw/hqdefault.jpg?sqp=-oaymwEZCNACELwBSFXyq4qpAwsIARUAAIhCGAFwAQ==&amp;rs=AOn4CLDikvh6K1otRdAV1Zgx9s2KXjvAGg",
-                youtubeURL: "https://www.youtube.com/embed/Fp-t3gic6qw",
-                creator: "Super süßes Katzen-Video",
-                likes: 0,
-                views: 0,
-                display: false
-              })
-              res.status(200).json({ 'Connection': 'close', data: videos });
+              if (videos.every((vid) => {
+                  return vid.id !== 'Fp-t3gic6qw';
+                })) {
+                videos.push({
+                  id: 'Fp-t3gic6qw',
+                  title: "Super süßes Katzen-Video",
+                  thumbnail:
+                    "https://i.ytimg.com/vi/Fp-t3gic6qw/hqdefault.jpg?sqp=-oaymwEZCNACELwBSFXyq4qpAwsIARUAAIhCGAFwAQ==&amp;rs=AOn4CLDikvh6K1otRdAV1Zgx9s2KXjvAGg",
+                  youtubeURL: "https://www.youtube.com/embed/Fp-t3gic6qw",
+                  creator: "Super süßes Katzen-Video",
+                  likes: 0,
+                  views: 0/*,
+                display: false*/
+                })
+              }
+              res.status(200).json({ 'Connection': 'close', data: videos, vidId: 'Fp-t3gic6qw' });
             }
           });
           busboy.on('finish', function() {

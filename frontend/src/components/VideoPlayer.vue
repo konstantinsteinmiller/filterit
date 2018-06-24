@@ -92,7 +92,8 @@ export default {
               .filter((vid) => {
                 return vid && vid.id && vid.id === this.videoId}
               )
-            this.activeVideo = (foundVideos && foundVideos.length >= 1) ? foundVideos.pop() : videosCopy[0];
+            console.log('foundVideos', foundVideos)
+            this.activeVideo = (foundVideos && foundVideos.length >= 1) ? foundVideos.pop() : this.vids[0];
             this.$forceUpdate();
           }
 
@@ -101,7 +102,7 @@ export default {
     },
     chooseVideo(video, admitted){
       //SET VIDEO AS ACTIVE VIDEO
-      this.activeVideo = video;
+      // this.activeVideo = video;
       this.$router.push({ query: {v: video.id}})
       this.remount = false;
       //INCREASE THE VIDEOS VIEWS BY 1
@@ -109,14 +110,7 @@ export default {
       Vue.nextTick(() => {
         this.remount = true;
       })
-
-
-      if (admitted && this.vids.every( vid => {
-          return vid.id !== uploadableVideos.id
-        }))
-      {
-        // Vue.set(this.vids, this.vids.length, uploadableVideos[0]);
-      }
+      
     },
     addLike(){
       this.activeVideo.likes += 1;

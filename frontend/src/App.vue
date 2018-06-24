@@ -45,8 +45,6 @@
         <v-icon style="margin-left: -1em"
                 @click="searchForVideos">search</v-icon>
 
-
-
         <v-spacer></v-spacer>
         <v-toolbar-items class="hidden-sm-and-down">
 
@@ -84,7 +82,7 @@
     name: 'App',
     data(){
       return {
-        appName: 'App name ',
+        appName: 'FilterIt',
         drawer: false
       }
     },

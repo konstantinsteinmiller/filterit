@@ -1,1 +1,36 @@
-<!DOCTYPE html><html><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons" rel=stylesheet><title>MEVNV</title><link href=./static/css/app.6971df628c2391e7e58db90ce64acb1f.css rel=stylesheet></head><body><div id=app></div><script type=text/javascript src=./static/js/manifest.2b10268e581647315813.js></script><script type=text/javascript src=./static/js/vendor.5fb4f668dfed1df46465.js></script><script type=text/javascript src=./static/js/app.a8dfb83fc18ba6b4690c.js></script></body></html>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JSSample</title>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+</head>
+<body>
+
+<script type="text/javascript">
+  $(function() {
+    var params = {
+      "shortAudio": "false"
+    };
+
+    $.ajax({
+      url: "https://westus.api.cognitive.microsoft.com/spid/v1.0/identify?identificationProfileIds=55b8e588-594a-4d97-a4ec-41a3523b442e,96cf9c0e-37d2-4fa4-96e8-dbf9421af583&shortAudio=false",
+      //96cf9c0e-37d2-4fa4-96e8-dbf9421af583
+      beforeSend: function (xhrObj) {
+        // Request headers
+        xhrObj.setRequestHeader("Content-Type","application/octet-stream");
+        xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key", "fc82178ba3e44c24b042843fc52f9ad9");
+      },
+      type: "POST",
+      // Request body
+      data: "{body}",
+    })
+      .done(function(data) {
+        alert("success");
+      })
+      .fail(function() {
+        alert("error");
+      });
+  });
+</script>
+</body>
+</html>
