@@ -149,8 +149,7 @@ export default ({ config, db }) => {
                   youtubeURL: "https://www.youtube.com/embed/Fp-t3gic6qw",
                   creator: "Super süßes Katzen-Video",
                   likes: 0,
-                  views: 0/*,
-                display: false*/
+                  views: 0
                 })
               }
               res.status(200).json({ 'Connection': 'close', data: videos, vidId: 'Fp-t3gic6qw' });

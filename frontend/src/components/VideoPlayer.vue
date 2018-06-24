@@ -110,7 +110,7 @@ export default {
       Vue.nextTick(() => {
         this.remount = true;
       })
-      
+
     },
     addLike(){
       this.activeVideo.likes += 1;

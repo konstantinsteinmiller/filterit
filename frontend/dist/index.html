@@ -1,36 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>JSSample</title>
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons" rel=stylesheet>
+  <title>FilterIt</title>
+  <link rel=icon href=./static/FilterIt_icon.png rel=stylesheet>
+  <link href=/filterit/static/css/app.dc7f9fb8ef44ac55022fbac6104fe892.css rel=stylesheet>
 </head>
 <body>
-
-<script type="text/javascript">
-  $(function() {
-    var params = {
-      "shortAudio": "false"
-    };
-
-    $.ajax({
-      url: "https://westus.api.cognitive.microsoft.com/spid/v1.0/identify?identificationProfileIds=55b8e588-594a-4d97-a4ec-41a3523b442e,96cf9c0e-37d2-4fa4-96e8-dbf9421af583&shortAudio=false",
-      //96cf9c0e-37d2-4fa4-96e8-dbf9421af583
-      beforeSend: function (xhrObj) {
-        // Request headers
-        xhrObj.setRequestHeader("Content-Type","application/octet-stream");
-        xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key", "fc82178ba3e44c24b042843fc52f9ad9");
-      },
-      type: "POST",
-      // Request body
-      data: "{body}",
-    })
-      .done(function(data) {
-        alert("success");
-      })
-      .fail(function() {
-        alert("error");
-      });
-  });
-</script>
+<div id=app></div>
+<script type=application/javascript src=/filterit/static/js/manifest.b041b3ace78058de377a.js></script>
+<script type=application/javascript src=/filterit/static/js/vendor.5fb4f668dfed1df46465.js></script>
+<script type=application/javascript src=/filterit/static/js/app.c6a312502ce25766c370.js></script>
 </body>
 </html>

@@ -18,7 +18,7 @@
           </v-list-tile>
           <v-list-tile @click="">
             <v-list-tile-action>
-              <v-icon>fas fa-upload</v-icon>
+              <v-icon>file_upload</v-icon>
             </v-list-tile-action>
             <v-list-tile-content>
               <v-list-tile-title><router-link class="app__navigation-link" :to="{ name: 'Upload' }">Upload</router-link></v-list-tile-title>
@@ -30,7 +30,7 @@
       <v-toolbar app fixed clipped-left>
         <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
         <div class="page__logo">
-          <img src="/static/Logo_FilterIt.png" class="page__logo-image">
+          <img src="/filterit/static/Logo_FilterIt.png" class="page__logo-image">
         </div>
         <v-toolbar-items class="hidden-sm-and-down page__search">
           <span  class="hidden-xs-only">
@@ -49,9 +49,8 @@
         <v-toolbar-items class="hidden-sm-and-down">
 
           <v-icon class="page__toolbar-upload-button"
-                  @click="$router.push({name: 'Upload'})">fas fa-upload</v-icon>
-          <v-icon class="page__toolbar-user">fas fa-user</v-icon>
-          <!--<v-icon>fas fa-circle-notch fa-spin</v-icon>-->
+                  @click="$router.push({name: 'Upload'})">file_upload</v-icon>
+          <v-icon class="page__toolbar-user">perm_identity</v-icon>
         </v-toolbar-items>
 
       </v-toolbar>
