@@ -95,7 +95,7 @@ export default {
     },
     checkError(file, message, xhr){
       console.log("checkError ", message)
-      this.alert = { type: 'error', text: 'The file cant be uploaded due to copyright infringement.' }
+      this.alert = { type: 'error', text: message.message }
     }
   }
 }

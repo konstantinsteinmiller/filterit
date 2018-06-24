@@ -11,6 +11,69 @@ var http = require('http'),
 
 var Busboy = require('busboy');
 
+let videos = [
+  {
+    id: 'bfTOOpGr7Vw',
+    title: "Teletabbies - Alle hatten ihre Lieblingssachen dabei",
+    thumbnail:
+      "https://img.youtube.com/vi/bfTOOpGr7Vw/default.jpg",
+    youtubeURL: "https://www.youtube.com/embed/bfTOOpGr7Vw",
+    creator: "Teletabbies",
+    likes: 0,
+    views: 0
+  },{
+    id: 'ZbZSe6N_BXs',
+    title: "Pharrell Williams - Happy",
+    thumbnail:
+      "https://i.ytimg.com/vi/JRMOMjCoR58/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&amp;rs=AOn4CLDYO17BuSTD_XxF_-u_T2fp2qVYRQ",
+    youtubeURL: "https://www.youtube.com/embed/ZbZSe6N_BXs",
+    creator: "Pharrell Williams",
+    likes: 0,
+    views: 0
+  },
+  {
+    id: 'qD2wi-I3JpY',
+    title: "Witziges Katzen Video zum Totlachen 2018 [Witzige Videos/Witzige Tier Videos]",
+    thumbnail:
+      "https://i.ytimg.com/vi/qD2wi-I3JpY/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&amp;rs=AOn4CLDAC2zgmLIlc8zq_bLP9MBGR6JuPQ",
+    youtubeURL: "https://www.youtube.com/embed/qD2wi-I3JpY",
+    creator: "Witziges Katzen",
+    likes: 0,
+    views: 0
+  },
+  {
+    id: 'b5hOKAIs0Is',
+    title: "Titanic in 10 Sekunden",
+    thumbnail:
+      "https://i.ytimg.com/vi/b5hOKAIs0Is/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&amp;rs=AOn4CLDFfV7URq5EAgegWAHzoM2v-x3hzg",
+    youtubeURL: "https://www.youtube.com/embed/b5hOKAIs0Is",
+    creator: "Titanic in 10 Sekunden",
+    likes: 0,
+    views: 0
+  },
+  {
+    id: '_DboMAghWcA',
+    title: "Rise Against - Hero Of War",
+    thumbnail:
+      "https://i.ytimg.com/vi/_DboMAghWcA/hqdefault.jpg?sqp=-oaymwEZCNACELwBSFXyq4qpAwsIARUAAIhCGAFwAQ==&amp;rs=AOn4CLCyNsjbwvVsIs8E5mTyRdIbC4Vccw",
+    youtubeURL: "https://www.youtube.com/embed/_DboMAghWcA",
+    creator: "Rise Against",
+    likes: 0,
+    views: 0
+  },
+  // {
+  //   id: 'u8G10UCVonM',
+  //   title: "Lustige kurze Videos",
+  //   thumbnail:
+  //     "https://img.youtube.com/vi/u8G10UCVonM/default.jpg",
+  //   youtubeURL: "https://www.youtube.com/embed/u8G10UCVonM",
+  //   creator: "Lustige kurze Videos",
+  //   likes: 0,
+  //   views: 0,
+  //   display: false
+  // },
+
+];
 
 export default ({ config, db }) => {
     let api = Router();
@@ -21,6 +84,16 @@ export default ({ config, db }) => {
     // perhaps expose some API metadata at the root
     api.get('/', (req, res) => {
         res.status(200).json({ version, text: 'some ' + JSON.stringify(req) });
+    });
+
+    api.get('/videos', (req, res) => {
+        res.status(200).json({ data: videos });
+    });
+
+    api.post('/videos', (req, res) => {
+        console.log('req.body', req.body)
+
+        res.status(200).json({ data: videos });
     });
 
     api.post('/checkFile', (req, res) => {
@@ -49,13 +122,24 @@ export default ({ config, db }) => {
           let busboy = new Busboy({ headers: req.headers });
           busboy.on('file', function(fieldname, file, filename, encoding, mimetype) {
             let saveTo = path.join(__dirname, '../' + filename);
-            // console.log('file, filename', saveTo, filename)
+
             file.pipe(fs.createWriteStream(saveTo));
 
             if (~filename.indexOf('Michael Jackson')){
-              res.status(403).json({ 'Connection': 'close' });
+              res.status(403).json({ 'Connection': 'close', message: 'The file can\'t be uploaded due to copyright infringement.' });
             }else {
-              res.status(200).json({ 'Connection': 'close' });
+              videos.push({
+                id: 'Fp-t3gic6qw',
+                title: "Super süßes Katzen-Video",
+                thumbnail:
+                  "https://i.ytimg.com/vi/Fp-t3gic6qw/hqdefault.jpg?sqp=-oaymwEZCNACELwBSFXyq4qpAwsIARUAAIhCGAFwAQ==&amp;rs=AOn4CLDikvh6K1otRdAV1Zgx9s2KXjvAGg",
+                youtubeURL: "https://www.youtube.com/embed/Fp-t3gic6qw",
+                creator: "Super süßes Katzen-Video",
+                likes: 0,
+                views: 0,
+                display: false
+              })
+              res.status(200).json({ 'Connection': 'close', data: videos });
             }
           });
           busboy.on('finish', function() {

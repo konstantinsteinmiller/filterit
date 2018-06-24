@@ -20,8 +20,14 @@ export default class Api {
     }();
   }
 
-  get(){
-    return this.api.get('get')
+  getVideos(){
+    return this.api.get('videos')
+      .then(parseJSON)
+      .catch(handleError)
+  }
+
+  updateVideos(data){
+    return this.api.post('videos')
       .then(parseJSON)
       .catch(handleError)
   }

@@ -29,7 +29,9 @@
       </v-navigation-drawer>
       <v-toolbar app fixed clipped-left>
         <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-
+        <div class="page__logo">
+          <img src="/static/Logo_FilterIt.png" class="page__logo-image">
+        </div>
         <v-toolbar-items class="hidden-sm-and-down page__search">
           <span  class="hidden-xs-only">
             <v-text-field
@@ -47,9 +49,7 @@
 
         <v-spacer></v-spacer>
         <v-toolbar-items class="hidden-sm-and-down">
-          <div class="page__logo">
-            <img src="/static/Logo_FilterIt.png" class="page__logo-image">
-          </div>
+
           <v-icon class="page__toolbar-upload-button"
                   @click="$router.push({name: 'Upload'})">fas fa-upload</v-icon>
           <v-icon class="page__toolbar-user">fas fa-user</v-icon>
@@ -84,7 +84,7 @@
     name: 'App',
     data(){
       return {
-        appName: 'App name',
+        appName: 'App name ',
         drawer: false
       }
     },
@@ -123,7 +123,7 @@
       &__logo
         /*margin-top 5em*/
         display: block
-        width 100%
+        width auto
         height 66px
         overflow hidden
         &-image
@@ -145,7 +145,7 @@
           margin-right 2em
       &__search
         > *
-          margin-left 16em
+          margin-left 4em
           width 30em
 
 
