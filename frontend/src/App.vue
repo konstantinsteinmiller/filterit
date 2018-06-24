@@ -30,7 +30,7 @@
       <v-toolbar app fixed clipped-left>
         <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
         <div class="page__logo">
-          <img src="/filterit/static/Logo_FilterIt.png" class="page__logo-image">
+          <img src="/static/Logo_FilterIt.png" class="page__logo-image">
         </div>
         <v-toolbar-items class="hidden-sm-and-down page__search">
           <span  class="hidden-xs-only">
