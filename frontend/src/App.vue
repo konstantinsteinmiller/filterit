@@ -106,8 +106,7 @@
       document.title = this.appName;
       if (localStorage.alert === 'true') {
         this.alert = { type: 'success', text: 'This website is insured against copyright infringement by ' }
-        this.$forceUpdate()
-      }
+        this.$forceUpdate()}
     },
     methods: {
       searchForVideos(){
