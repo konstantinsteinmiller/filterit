@@ -80,11 +80,7 @@ export default {
   },
   methods: {
     onInit(){
-      // api.get()
-      //   .then((response) => {
-      //     /* do something with response */
-      //   })
-      //   .catch(handleError)
+
     },
     addedFile(file){
 
@@ -92,6 +88,8 @@ export default {
     checkSuccessful(file, response){
       console.log("checkSuccessful ", /*file, */response)
       this.alert = { type: 'success', text: 'successfully added file.' }
+      localStorage.alert = true;
+
       setTimeout(() => {
         this.$router.push({path: '/player', query: { v: response.vidId } })
       }, 1000)

@@ -55,6 +55,11 @@
 
       </v-toolbar>
       <v-content>
+        <v-alert  class="page__alert" v-if="alert" :type="alert.type" dismissible v-model="alert">
+          <span class="page__alert-text">
+            <span>{{ alert.text }}</span> <span><img src="../static/SV.png" class="page__logo-sv"></span>
+          </span>
+        </v-alert>
         <v-container fluid fill-height>
           <v-layout justify-center align-center>
             <v-flex shrink>
@@ -82,14 +87,27 @@
     data(){
       return {
         appName: 'FilterIt',
-        drawer: false
+        drawer: false,
+        alert: null
       }
     },
     props: {
 
     },
+    watch: {
+      '$route'(){
+        if (localStorage.alert === 'true') {
+          this.alert = { type: 'success', text: 'This website is insured against copyright infringement by ' }
+          this.$forceUpdate()
+        }
+      }
+    },
     mounted(){
       document.title = this.appName;
+      if (localStorage.alert === 'true') {
+        this.alert = { type: 'success', text: 'This website is insured against copyright infringement by ' }
+        this.$forceUpdate()
+      }
     },
     methods: {
       searchForVideos(){
@@ -129,6 +147,17 @@
           text-align left
           display inline-block
           z-index -1
+        &-sv
+          width 120px
+          height 70px
+          margin-bottom -20px
+      &__alert
+
+        > div
+          padding-bottom 20px
+        &-text
+          text-align center
+          padding-bottom 20px
       &__toolbar
         &-upload-button
           margin 0 1em
