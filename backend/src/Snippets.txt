@@ -1,0 +1,102 @@
+./deploy.sh -l WF bpk cat mc    //[in /cygdrive/c/Users/k.steinmiller/docker-repo/nmdocker/tools]
+./deploy.sh -l LR ALL    
+./watch.sh						//[in /cygdrive/c/Users/k.steinmiller/docker-repo/nmdocker/tools]
+mvn clean install -DskipTests -pl=:ear,:front
+
+http://10.0.75.1:8080/zM/catalog-httpservice/rest/dataview/?gtin=4250880800245&partnerkey=ki1mqHSyor0l2OkHGuer&lang=deu
+https://ws-int.nexmart.com/services/dataview/?gtin=4250880800245&partnerkey=ki1mqHSyor0l2OkHGuer&lang=deu
+https://ws-int.nexmart.com/services/dataview-new/?partnerkey=0YSYWgn0PD9v7QVSu6cu&productid=maximal
+
+C:\Users\k.steinmiller\nexmart\catalog\ear\target
+C:\Users\docker-share\jb\deploy
+
+docker exec -ti awildfly bash  	//[in cmd]
+
+docker cp "\\dev013\pmsautoimport\bunches\qa_katalog_bme~~1~~INITIAL~~bmecat_minimal.xml" awildfly:/ce-data/importer/bunches/qa_katalog_bme~~1~~INITIAL~~bmecat_minimal.xml && docker cp "\\dev013\pmsautoimport\bunches\qa_katalog_bme~~2~~UPDATE~~bmecat_maximal.xml" awildfly:/ce-data/importer/bunches/qa_katalog_bme~~2~~UPDATE~~bmecat_maximal.xml && docker cp "\\dev013\pmsautoimport\bunches\qa_katalog_bme~~3~~UPDATE~~bmecat_GTIN-Videos.xml" awildfly:/ce-data/importer/bunches/qa_katalog_bme~~3~~UPDATE~~bmecat_GTIN-Videos.xml && docker cp "\\dev013\pmsautoimport\bunches\irgendwas~~X~~INITIAL~~test_ohne_Inhalt.xml" awildfly:/ce-data/importer/bunches/irgendwas~~X~~INITIAL~~test_ohne_Inhalt.xml && docker cp "\\dev013\pmsautoimport\bunches\tequip~~1~~INITIAL~~bmecat_minimal.xml" awildfly:/ce-data/importer/bunches/tequip~~1~~INITIAL~~bmecat_minimal.xml && docker cp "\\dev013\pmsautoimport\bunches\xciterc_de~~1_demo_katalog-final_de~~INITIAL~~TEST_20170316.xml" awildfly:/ce-data/importer/bunches/xciterc_de~~1_demo_katalog-final_de~~INITIAL~~TEST_20170316.xml
+docker cp "\\dev013\pmsautoimport\bunches\tequip~~1~~INITIAL~~bmecat_minimal.xml" awildfly:/ce-data/importer/bunches/tequip~~1~~INITIAL~~bmecat_minimal.xml 
+&& docker cp "\\dev013\pmsautoimport\bunches\xciterc_de~~1_demo_katalog-final_de~~INITIAL~~TEST_20170316.xml" awildfly:/ce-data/importer/bunches/xciterc_de~~1_demo_katalog-final_de~~INITIAL~~TEST_20170316.xml
+
+qa_catalog Partnerkey: M8nfUU7xdVBaYtVkVdc5
+
+mvn clean install -DskipTests=true -pl :ear -am -f C:\Users\k.steinmiller\nexmart\catalog\pom.xml
+
+docker logs --follow awildfly in Powershell
+
+//?????     [in /cygdrive/c/Users/k.steinmiller/docker-repo/nmdocker/images/nm-ce-data]      ./build.sh nexmart~~xciterc_de~~xciterc_de~~2015-10-21T11-20   
+
+
+cd /cygdrive/c/Users/k.steinmiller/docker-repo/docker/compositions && ./stop.sh dev && ./remove.sh dev && ./start.sh dev -s awildfly -s httpd
+
+catalog-view-demo.properties anpassen, wenn Demo mit falschem Server kommuniziert und catalog-view-ear neu deployen mit docker
+deploy script des hudson überprüfen
+
+dev: kÄpsele?
+all: nexmart_2008
+nm_open: W3lcom3_n3xMart
+
+////////Docker Liferay//////////
+
+docker exec -it liferay bash
+
+//löschen der image aus der docker bash heraus
+cd tomcat-7.0.62/webapps && rm -rf net.nexmart.service.bpk.bpk-portlet/ && ls -la
+rm -rf net.nexmart.service.catalog.data-admin-portlet
+
+
+docker stop liferay-db
+////////////////////////////////
+
+docker run dev011.nexmart.com:5000/nm-liferay
+docker run dev011.nexmart.com:5000/nm-liferay-db-hsql
+
+
+- Restart docker bei certificate error, Hyper-V VM rauslöschen
+
+- Bei proxy Fehler ->  VPN ausschalten und richtige repository adresse bei insecure-origins eintragen in docker settings
+
+- Bei verändertem Rechner Passwort stürzt Wildfly ab, 
+-> reset der Credentials in Docker Settings ist notwendig mit Eingabe der neuen Credentials
+
+- bei nexus deploy problemen, @dev011 usr/local/bin/stop_nexus.sh -> usr/local/bin/start_nexus.sh
+
+endpoint = https://ws-dev.nexmart.com/ in C:\Users\k.steinmiller\nexmart\stage-config\int\nm-conf\catalog-engine\catalog-view-demo.properties muss angepasst werden für lokale Entwicklung
+
+https://ws-dev.nexmart.com/services/catalogview/demo/0YSYWgn0PD9v7QVSu6cu/de/Maximalkategorie-deutsch/c-maximalkategorie/
+
+//dev013 Absturz -> neustarten des wildfly-0
+ssh auf dev013 --->
+sudo /data/git/docker/tools/watch.sh services
+sudo docker stop awildfly-0 && sudo docker start awildfly-0
+
+/data/git/docker/images/nm-ce-data/build.sh int && /data/git/docker/images/nm-app-data/build.sh int 
+
+\\dev013\deployments\int\slot-0\wildfly\a\deploy
+
+http://localhost:9080/de/web/backoffice/
+
+//hudson neustarten bei authentifizierungsproblem
+sudo su auto.build
+
+ 
+service hudson restart
+
+nexmart-poss
+nexmart_2008
+
+
+if(queryLength > 80){
+	var memeUrl = "http://s2.quickmeme.com/img/37/37c1b462d20d40f3c9c030986b69f6c02a66fae9b5f1b9871cb71daecf26e625.jpg";
+	var styles = {
+		'background-image' : url(memeUrl),
+		'background-size-x': '20em',
+		'background-size-y': '16em',
+		'background-position-y': '5em',
+		'background-repeat': 'no-repeat',
+		'width' : '22em',
+		'height': '20em'
+	};
+	$('.show-all .query-highlight').text(query).css(styles);
+}
+
+
+
