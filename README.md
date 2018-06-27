@@ -26,4 +26,4 @@ The FilterIt needs the node server to run in order to function correctly.
 [presentation FilterIt.pptx](https://github.com/konstantinsteinmiller/filterit/blob/master/static/presentationFilterIt.pptx)
 
 ## 5. Contributors
-Konstantin Steinmiller, Fabian, Alice Grützner, Thomas Wolf  
+Konstantin Steinmiller, Fabian Wolf, Alice Grützner, Thomas Suhler
