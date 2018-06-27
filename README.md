@@ -23,7 +23,7 @@ The FilterIt needs the node server to run in order to function correctly.
 ![Upload](https://raw.githubusercontent.com/konstantinsteinmiller/filterit/master/static/filteritUpload.PNG)
 
 ## 4. Presentation
-[presentation FilterIt.pptx](https://github.com/konstantinsteinmiller/filterit/blob/master/presentation.pptx)
+[presentation FilterIt.pptx](https://github.com/konstantinsteinmiller/filterit/blob/master/presentationFilterIt.pptx)
 
 ## 5. Contributors
 Konstantin Steinmiller, Fabian, Alice Grützner, Thomas Wolf  
