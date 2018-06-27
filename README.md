@@ -19,8 +19,8 @@ The backend is a node-js server with a restful api.
 The FilterIt needs the node server to run in order to function correctly.
 
 ## 3. UI
-![Player](https://raw.githubusercontent.com/konstantinsteinmiller/filterit/master/frontend/static/filterit.png)
-![Upload](https://raw.githubusercontent.com/konstantinsteinmiller/filterit/master/frontend/static/filteritUpload.png)
+![Player](https://raw.githubusercontent.com/konstantinsteinmiller/filterit/master/static/filterit.png)
+![Upload](https://raw.githubusercontent.com/konstantinsteinmiller/filterit/master/static/filteritUpload.png)
 
 ## 4. Presentation
 [presentation FilterIt.pptx](https://github.com/konstantinsteinmiller/filterit/blob/master/presentation.pptx)
